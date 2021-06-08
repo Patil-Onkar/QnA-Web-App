@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .topnav {
+            overflow: hidden;
+            background-color: gray;
+            margin: 0px;
+            font-size: 35px;
+    
+
+            }
+            .topnav.active{
+                background-image: linear-gradient(black,gray,white);
+            }
+
+              .topnav a {
+             float: left;
+             color: #f2f2f2;
+             text-align: center;
+             padding: 25px;
+            text-decoration: none;
+            font-size: 100px;
+            }
+             div{
+            text-align:left;
+            padding-top: 0px;
+            padding-left: 0px;
+             color: rgba(84, 163, 187, 0.945);
+             font-size: 20px;
+             position: fixed;
+             font-family:sans-serif;
+            }
+            #blank,#blank1{
+                color: red;
+            }
+        </style>
+    </head>
+    <body >
+        <ul class="topnav">Q n A Web App  
+            <a class="active"></a>
+        </ul>
+        <div style="background:url(back1.jfif);padding:60px;height: 600px;width: 1500px; background-size: cover;line-height: 15px;" >
+       Enter the paragraph:<br><br><textarea rows="10" cols="65" id="txt1" placeholder="please fill the paragraph" style="text-align:center,;"></textarea><span id="blank"></span><br><br>
+        Enter the question:<br><br><textarea cols="65" id="txt2" placeholder="pleaes enter the quetion"></textarea><span id="blank1" ></span><br><br><br>
+       <button class= "btn btn-primary" onclick='submit_entry();' style="font-size: 20px;">Get Answer</button>
+       </div>
+       <div id="results"></div>
+        <script>
+            function submit_entry(){
+                var txt1 = document.getElementById('txt1');
+                var txt2 = document.getElementById('txt2');
+            var entry = {
+                    txt1:txt1.value,
+                    txt2:txt2.value
+                };
+                console.log(entry)
+                fetch('http://127.0.0.1:5000/qna',{
+                    method:"POST",
+                    body:JSON.stringify(entry),
+                    headers:new Headers({
+                        "content-type": "application/json"
+                    })
+                })
+                .then(function(response){
+                    response.json().then(function(response){
+                        console.log(response)
+                        return response
+                    }).then(function(response){
+                        var results = document.getElementById('results')
+                        results.innerHTML=response.message
+                    })
+                })
+            }
+            function submit_entry(){
+                var x=document.getElementById('txt1').value;
+                if (x=="") {
+                    document.getElementById("blank").innerHTML="*please fill the text";
+                     }
+               var Y=document.getElementById('txt2').value;
+                if (Y=="") {
+                    document.getElementById("blank1").innerHTML="*please fill the text";
+                     }
+            }
+        </script>
+    </body>
+</html>
