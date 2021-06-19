@@ -26,7 +26,6 @@
             text-align:left;
             padding-top: 0px;
             padding-left: 0px;
-             color: rgba(84, 163, 187, 0.945);
              font-size: 20px;
              position: fixed;
              font-family:sans-serif;
@@ -36,21 +35,24 @@
             }
         </style>
     </head>
-    <body >
-        <ul class="topnav">Q n A Web App  
+    <body>
+         <ul class="topnav">Q n A Web App  
             <a class="active"></a>
-        </ul>
-        <div style="background:url(back1.jfif);padding:60px;height: 600px;width: 1500px; background-size: cover;line-height: 15px;" >
+	</ul>
+       
+        <div style="background:url(back1.jfif);padding:60px;height: 600px;width: 1500px; background-size: cover;line-height: 15px;">
        Enter the paragraph:<br><br><textarea rows="10" cols="65" id="txt1" placeholder="please fill the paragraph" style="text-align:center,;"></textarea><span id="blank"></span><br><br>
         Enter the question:<br><br><textarea cols="65" id="txt2" placeholder="pleaes enter the quetion"></textarea><span id="blank1" ></span><br><br><br>
-       <button class= "btn btn-primary" onclick='submit_entry();' style="font-size: 20px;">Get Answer</button>
+       <button class= "btn btn-primary" onclick='submit_entry();' style="font-size: 20px;">Get Answer</button><br><br>
+	<br><div style="font-size:15px;" id="results"></div>
        </div>
-       <div id="results"></div>
+   
         <script>
             function submit_entry(){
                 var txt1 = document.getElementById('txt1');
                 var txt2 = document.getElementById('txt2');
-            var entry = {
+            
+                var entry = {
                     txt1:txt1.value,
                     txt2:txt2.value
                 };
@@ -71,16 +73,6 @@
                         results.innerHTML=response.message
                     })
                 })
-            }
-            function submit_entry(){
-                var x=document.getElementById('txt1').value;
-                if (x=="") {
-                    document.getElementById("blank").innerHTML="*please fill the text";
-                     }
-               var Y=document.getElementById('txt2').value;
-                if (Y=="") {
-                    document.getElementById("blank1").innerHTML="*please fill the text";
-                     }
             }
         </script>
     </body>
