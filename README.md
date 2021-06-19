@@ -1,4 +1,7 @@
-# QnA Web App
+# QnA Web App  
+
+![](web.gif)  
+
  
 ## About  
 
